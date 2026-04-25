@@ -30,6 +30,7 @@ const ManageNotices = () => {
         <select value={form.audience} onChange={(e) => setForm((p) => ({ ...p, audience: e.target.value }))}>
           <option value="all">All</option>
           <option value="student">Students</option>
+          <option value="faculty">Faculty</option>
           <option value="admin">Admins</option>
         </select>
         <button type="submit">Publish</button>

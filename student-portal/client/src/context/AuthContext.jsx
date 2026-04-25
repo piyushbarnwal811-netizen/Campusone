@@ -43,13 +43,37 @@ export const AuthProvider = ({ children }) => {
     return data;
   };
 
+  const requestRegisterOtp = async (payload) => {
+    const data = await authService.requestRegisterOtp(payload);
+    return data;
+  };
+
+  const requestPasswordResetOtp = async (payload) => {
+    const data = await authService.requestPasswordResetOtp(payload);
+    return data;
+  };
+
+  const resetPasswordWithOtp = async (payload) => {
+    const data = await authService.resetPasswordWithOtp(payload);
+    return data;
+  };
+
   const logout = () => {
     localStorage.removeItem("token");
     setUser(null);
   };
 
   const value = useMemo(
-    () => ({ user, loading, login, register, logout }),
+    () => ({
+      user,
+      loading,
+      login,
+      register,
+      requestRegisterOtp,
+      requestPasswordResetOtp,
+      resetPasswordWithOtp,
+      logout
+    }),
     [user, loading]
   );
 

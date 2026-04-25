@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { getComplaintDepartmentLabel } from "../../constants/complaintDepartments";
 import { getAllComplaints, updateComplaint } from "../../services/complaintService";
 
 const ManageComplaints = () => {
@@ -26,7 +27,9 @@ const ManageComplaints = () => {
           <div className="card" key={item._id}>
             <h3>{item.title}</h3>
             <p>{item.description}</p>
-            <small>Student: {item.student?.name} | Status: {item.status}</small>
+            <small>
+              Student: {item.student?.name} | Department: {getComplaintDepartmentLabel(item.targetDepartment)} | Status: {item.status}
+            </small>
             <div className="row">
               <button type="button" onClick={() => handleUpdate(item._id, "in_progress", item.response || "Complaint in review")}>In Progress</button>
               <button type="button" onClick={() => handleUpdate(item._id, "resolved", "Resolved by admin")}>Resolve</button>

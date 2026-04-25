@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import { COMPLAINT_DEPARTMENTS } from "../constants/complaintDepartments.js";
 
 const complaintSchema = new mongoose.Schema(
   {
@@ -16,6 +17,11 @@ const complaintSchema = new mongoose.Schema(
       type: String,
       required: true,
       trim: true
+    },
+    targetDepartment: {
+      type: String,
+      enum: COMPLAINT_DEPARTMENTS,
+      required: true
     },
     status: {
       type: String,

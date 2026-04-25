@@ -1,17 +1,23 @@
 import Complaint from "../models/Complaint.js";
+import { COMPLAINT_DEPARTMENTS } from "../constants/complaintDepartments.js";
 
 export const createComplaint = async (req, res) => {
   try {
-    const { title, description } = req.body;
+    const { title, description, targetDepartment } = req.body;
 
-    if (!title || !description) {
-      return res.status(400).json({ message: "title and description are required." });
+    if (!title || !description || !targetDepartment) {
+      return res.status(400).json({ message: "title, description and targetDepartment are required." });
+    }
+
+    if (!COMPLAINT_DEPARTMENTS.includes(targetDepartment)) {
+      return res.status(400).json({ message: "Invalid targetDepartment selected." });
     }
 
     const created = await Complaint.create({
       student: req.user._id,
       title,
-      description
+      description,
+      targetDepartment
     });
 
     return res.status(201).json(created);

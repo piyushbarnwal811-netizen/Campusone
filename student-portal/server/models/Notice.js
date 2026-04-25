@@ -14,7 +14,7 @@ const noticeSchema = new mongoose.Schema(
     },
     audience: {
       type: String,
-      enum: ["all", "student", "admin"],
+      enum: ["all", "student", "faculty", "admin"],
       default: "all"
     },
     postedBy: {
